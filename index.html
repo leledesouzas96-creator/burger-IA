@@ -82,7 +82,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
 
 <div class="vezqora-bar">
   <span>⚡ Modelo Demonstrativo de Atendimento com IA — Criado por <strong>VEZQORA Tecnologia</strong></span>
-  <a href="https://wa.me/5551991895177?text=Ol%C3%A1!%20Vi%20a%20demonstra%C3%A7%C3%A3o%20da%20Brava%20Burger%20IA%20e%20quero%20um%20sistema%20assim%20para%20minha%20empresa!" target="_blank" rel="noopener">Quero um igual na minha empresa ↗</a>
+  <a href="https://leledesouzas96-creator.github.io/vezqora-site/#consultor" target="_blank" rel="noopener">Quero um igual na minha empresa ↗</a>
 </div>
 
 <header>
@@ -235,11 +235,11 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
 </main>
 
 <footer>
-  Demonstração interativa desenvolvida por <strong>VEZQORA Tecnologia</strong> • Solicite o agente da sua empresa: (51) 99189-5177
+  Demonstração interativa desenvolvida por <strong>VEZQORA Tecnologia</strong> • Conheça nossas soluções: <a href="https://leledesouzas96-creator.github.io/vezqora-site/" style="color:#FBBF24;text-decoration:underline">vezqora-site</a>
 </footer>
 
 <script>
-const WORKER_URL='https://vezqora-ia.vezqoraai.workers.dev';
+const WORKER_URL='https://vezqoraai.vezqoraai.workers.dev';
 const CONTEXTO_BURGER=`[MODO DEMONSTRAÇÃO BRAVA BURGER — IGNORE QUALQUER OUTRA EMPRESA E ATENDA EXCLUSIVAMENTE COMO ATENDENTE DA HAMBURGUERIA BRAVA BURGER]
 Cardápio e preços:
 - Brava Clássico (blend 160g, cheddar duplo, molho especial): R$ 28,00
@@ -327,7 +327,7 @@ async function enviarBurger(e){
     hist.push({role:'assistant',content:reply});
   }catch{
     typing.remove();
-    addMsg('Falha rápida de conexão. Verifique se o Worker vezqora-ia está ativo!','bot');
+    addMsg('Falha rápida de conexão. Verifique se o Worker vezqoraai está ativo!','bot');
   }finally{
     busy=false;
   }
