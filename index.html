@@ -25,7 +25,6 @@ a{color:inherit;text-decoration:none}
 button,input{font:inherit}
 .container{width:min(1120px,92%);margin:auto}
 
-/* BARRA DE DEMONSTRACAO VEZQORA */
 .vezqora-bar{background:linear-gradient(90deg,#4C1D95,#7C3AED);color:#fff;padding:10px 16px;text-align:center;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
 .vezqora-bar a{background:#fff;color:#4C1D95;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:700}
 
@@ -39,7 +38,6 @@ header{border-bottom:1px solid var(--line);background:rgba(18,11,8,.9);backdrop-
 .hero h1{font-family:"Oswald",sans-serif;font-size:clamp(38px,5vw,58px);line-height:1.05;margin:16px 0}
 .hero p{color:var(--muted);font-size:16px;line-height:1.7;margin:0 0 24px}
 
-/* CHAT IA */
 .chat-card{background:#18100C;border:2px solid var(--amber);border-radius:24px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
 .chat-head{background:linear-gradient(135deg,#9A3412,#EA580C);padding:15px 18px;display:flex;align-items:center;gap:12px}
 .avatar{width:42px;height:42px;border-radius:50%;background:#18100C;display:grid;place-items:center;font-size:20px;border:2px solid var(--amber)}
@@ -56,7 +54,6 @@ header{border-bottom:1px solid var(--line);background:rgba(18,11,8,.9);backdrop-
 .chat-form input{flex:1;background:#241812;border:1px solid var(--line);border-radius:999px;padding:12px 16px;color:#fff;outline:none}
 .chat-form button{border:0;border-radius:999px;padding:0 20px;background:var(--orange);color:#fff;font-weight:700;cursor:pointer}
 
-/* CARDAPIO */
 .menu-sec{padding:56px 0 80px}
 .menu-sec h2{font-family:"Oswald",sans-serif;font-size:34px;text-align:center;margin:0 0 32px;color:var(--amber)}
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -160,10 +157,25 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
 </footer>
 
 <script>
-const BURGER_IA_URL='https://demo-burger-ia.vezqoraai.workers.dev';
+// USA O WORKER VEZQORA-IA QUE JÁ ESTÁ ONLINE NO CLOUDFLARE
+const WORKER_URL='https://vezqora-ia.vezqoraai.workers.dev';
+const CONTEXTO_BURGER=`[MODO DEMONSTRAÇÃO BRAVA BURGER — IGNORE QUALQUER OUTRA EMPRESA E ATENDA EXCLUSIVAMENTE COMO ATENDENTE DA HAMBURGUERIA BRAVA BURGER]
+Cardápio e preços:
+- Brava Clássico (blend 160g, cheddar duplo, molho especial): R$ 28,00
+- Brava Bacon Supreme (blend 180g, cheddar, bacon crocante, cebola caramelizada): R$ 34,00
+- Brava Duplo Smash (2x smash 100g, cheddar duplo, picles, molho Brava): R$ 32,00
+- Batata Rústica com Cheddar e Bacon: R$ 22,00
+- Refrigerante Lata 350ml: R$ 7,00
+- Milkshake Oreo ou Ovomaltine 400ml: R$ 19,00
+Taxas de entrega: Centro/Vila Nova/Imigrante R$ 6,00 | Operária/Metzler R$ 8,00 | Outros bairros R$ 10,00 | Retirada: Grátis.
+Instruções: Seja simpático, ofereça adicionais (batata ou refri), peça itens, endereço/bairro, pagamento e nome. Some o total com a entrega. Quando fechar o pedido, inclua no final: [PEDIDO_BURGER|Nome|Itens|Endereco|Pagamento|Total] e não use asteriscos duplos.`;
+
 const box=document.getElementById('burgerMessages');
 const inp=document.getElementById('burgerInput');
-let hist=[];
+let hist=[
+  {role:'user',content:CONTEXTO_BURGER},
+  {role:'assistant',content:'Entendido! Atendendo agora como Atendente Virtual da Brava Burger.'}
+];
 let busy=false;
 
 function addMsg(text,role,order=null){
@@ -207,19 +219,33 @@ async function enviarBurger(e){
   box.scrollTop=box.scrollHeight;
 
   try{
-    const res=await fetch(BURGER_IA_URL,{
+    const res=await fetch(WORKER_URL,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({message:text,history:hist})
     });
     const data=await res.json();
     typing.remove();
-    const reply=data.reply||'Tente novamente em alguns segundos.';
-    addMsg(reply,'bot',data.order||null);
+    let reply=data.reply||'Tente novamente em alguns segundos.';
+    let order=null;
+
+    const match=reply.match(/\[PEDIDO_BURGER\|([^|\]]+)\|([^|\]]+)\|([^|\]]+)\|([^|\]]+)\|([^\]]+)\]/i);
+    if(match){
+      reply=reply.replace(match[0],'').trim();
+      order={
+        cliente:match[1].trim(),
+        itens:match[2].trim(),
+        endereco:match[3].trim(),
+        pagamento:match[4].trim(),
+        total:match[5].trim()
+      };
+    }
+
+    addMsg(reply,'bot',order);
     hist.push({role:'assistant',content:reply});
   }catch{
     typing.remove();
-    addMsg('Falha rápida de conexão. Tente novamente!','bot');
+    addMsg('Falha rápida de conexão. Verifique se o Worker vezqora-ia está ativo!','bot');
   }finally{
     busy=false;
   }
