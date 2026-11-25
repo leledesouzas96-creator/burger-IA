@@ -33,17 +33,18 @@ header{border-bottom:1px solid var(--line);background:rgba(18,11,8,.9);backdrop-
 .brand{font-family:"Oswald",sans-serif;font-size:28px;letter-spacing:1.5px;color:var(--amber);display:flex;align-items:center;gap:10px}
 .btn{border:0;border-radius:999px;padding:12px 22px;background:linear-gradient(135deg,var(--orange),#EA580C);color:#fff;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 10px 25px rgba(249,115,22,.32)}
 
-.hero{padding:52px 0 40px;display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
+.hero{padding:48px 0 36px;display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
 .tag{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(249,115,22,.16);border:1px solid rgba(249,115,22,.4);color:var(--amber);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
 .hero h1{font-family:"Oswald",sans-serif;font-size:clamp(38px,5vw,58px);line-height:1.05;margin:16px 0}
-.hero p{color:var(--muted);font-size:16px;line-height:1.7;margin:0 0 24px}
+.hero p{color:var(--muted);font-size:16px;line-height:1.7;margin:0 0 20px}
+.hero-banner{width:100%;height:200px;object-fit:cover;border-radius:20px;border:1px solid var(--line);margin-bottom:16px;box-shadow:0 16px 40px rgba(0,0,0,.45)}
 
 .chat-card{background:#18100C;border:2px solid var(--amber);border-radius:24px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
 .chat-head{background:linear-gradient(135deg,#9A3412,#EA580C);padding:15px 18px;display:flex;align-items:center;gap:12px}
 .avatar{width:42px;height:42px;border-radius:50%;background:#18100C;display:grid;place-items:center;font-size:20px;border:2px solid var(--amber)}
 .chat-head strong{display:block;font-size:15px}
 .chat-head span{font-size:12px;color:#FEF08A}
-.chat-body{height:340px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#120B08}
+.chat-body{height:350px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#120B08}
 .msg{padding:12px 15px;border-radius:16px;font-size:14px;line-height:1.5;max-width:86%;white-space:pre-wrap}
 .msg.bot{background:var(--card);border:1px solid var(--line);color:#FAF5F0;align-self:flex-start;border-bottom-left-radius:4px}
 .msg.user{background:linear-gradient(135deg,var(--orange),#D97706);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
@@ -54,16 +55,24 @@ header{border-bottom:1px solid var(--line);background:rgba(18,11,8,.9);backdrop-
 .chat-form input{flex:1;background:#241812;border:1px solid var(--line);border-radius:999px;padding:12px 16px;color:#fff;outline:none}
 .chat-form button{border:0;border-radius:999px;padding:0 20px;background:var(--orange);color:#fff;font-weight:700;cursor:pointer}
 
-.menu-sec{padding:56px 0 80px}
-.menu-sec h2{font-family:"Oswald",sans-serif;font-size:34px;text-align:center;margin:0 0 32px;color:var(--amber)}
-.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.item{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
-.item h3{margin:0 0 6px;font-size:19px}
-.item p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
-.item-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
-.price{font-family:"Oswald",sans-serif;font-size:22px;color:var(--amber)}
-.mini-btn{border:1px solid var(--orange);background:transparent;color:var(--orange);border-radius:999px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer}
-.mini-btn:hover{background:var(--orange);color:#fff}
+/* CARDAPIO COM FOTOS REAIS */
+.menu-sec{padding:48px 0 80px}
+.menu-sec h2{font-family:"Oswald",sans-serif;font-size:34px;text-align:center;margin:0 0 10px;color:var(--amber)}
+.menu-sub{text-align:center;color:var(--muted);font-size:15px;margin:0 0 34px}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s ease,border-color .25s ease;box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.item:hover{transform:translateY(-5px);border-color:var(--amber)}
+.item-img-wrap{position:relative;width:100%;height:210px;overflow:hidden;background:#241812}
+.item-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.item:hover .item-img-wrap img{transform:scale(1.06)}
+.item-badge{position:absolute;top:12px;left:12px;background:rgba(18,11,8,.86);border:1px solid var(--amber);color:var(--amber);font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px}
+.item-body{padding:20px;display:flex;flex-direction:column;justify-content:space-between;flex:1;gap:14px}
+.item h3{margin:0 0 6px;font-size:20px;font-family:"Oswald",sans-serif;letter-spacing:.5px}
+.item p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.6}
+.item-foot{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--line)}
+.price{font-family:"Oswald",sans-serif;font-size:23px;color:var(--amber)}
+.mini-btn{border:0;background:linear-gradient(135deg,var(--orange),#EA580C);color:#fff;border-radius:999px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(249,115,22,.3)}
+.mini-btn:hover{filter:brightness(1.1)}
 
 footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:13px}
 @media(max-width:820px){.hero,.menu-grid{grid-template-columns:1fr}}
@@ -88,6 +97,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
     <div>
       <span class="tag">Atendimento Automático 24h</span>
       <h1>Peça seu burger artesanal em segundos com nossa IA.</h1>
+      <img class="hero-banner" src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80" alt="Hambúrguer artesanal suculento na brasa">
       <p>Sem esperar resposta no WhatsApp! Nossa atendente virtual monta seu pedido, calcula a taxa de entrega do seu bairro na hora e envia direto para a chapa.</p>
       <p style="font-size:13px;color:#FBBF24">💡 <strong>Empresário:</strong> Teste fazer um pedido no chat ao lado para ver como a IA vende, oferece adicionais e calcula tudo sozinha!</p>
     </div>
@@ -116,36 +126,108 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
   </section>
 
   <section class="menu-sec">
-    <h2>Mais Pedidos da Casa</h2>
+    <h2>Cardápio Artesanal</h2>
+    <p class="menu-sub">Clique em "Pedir com IA" em qualquer item para enviar direto para a atendente virtual</p>
     <div class="menu-grid">
       <article class="item">
-        <div>
-          <h3>Brava Clássico</h3>
-          <p>Pão brioche selado, hambúrguer artesanal 160g, cheddar duplo derretido e molho especial da casa.</p>
+        <div class="item-img-wrap">
+          <span class="item-badge">Clássico da Casa</span>
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Brava Clássico" loading="lazy">
         </div>
-        <div class="item-foot">
-          <span class="price">R$ 28,00</span>
-          <button class="mini-btn" onclick="atalhoBurger('Quero pedir 1 Brava Clássico')">Pedir com IA ✦</button>
-        </div>
-      </article>
-      <article class="item">
-        <div>
-          <h3>Brava Bacon Supreme</h3>
-          <p>Blend 180g suculento, fatias crocantes de bacon, cheddar cremoso e cebola caramelizada no pão brioche.</p>
-        </div>
-        <div class="item-foot">
-          <span class="price">R$ 34,00</span>
-          <button class="mini-btn" onclick="atalhoBurger('Quero pedir 1 Brava Bacon Supreme')">Pedir com IA ✦</button>
+        <div class="item-body">
+          <div>
+            <h3>Brava Clássico</h3>
+            <p>Pão brioche selado na manteiga, hambúrguer artesanal 160g, cheddar duplo derretido e molho especial da casa.</p>
+          </div>
+          <div class="item-foot">
+            <span class="price">R$ 28,00</span>
+            <button class="mini-btn" onclick="atalhoBurger('Quero pedir 1 Brava Clássico')">Pedir com IA ✦</button>
+          </div>
         </div>
       </article>
+
       <article class="item">
-        <div>
-          <h3>Brava Duplo Smash</h3>
-          <p>Dois smash burgers 100g prensados na chapa com crosta perfeita, cheddar duplo, picles e molho Brava.</p>
+        <div class="item-img-wrap">
+          <span class="item-badge">🔥 Mais Vendido</span>
+          <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80" alt="Brava Bacon Supreme" loading="lazy">
         </div>
-        <div class="item-foot">
-          <span class="price">R$ 32,00</span>
-          <button class="mini-btn" onclick="atalhoBurger('Quero pedir 1 Brava Duplo Smash')">Pedir com IA ✦</button>
+        <div class="item-body">
+          <div>
+            <h3>Brava Bacon Supreme</h3>
+            <p>Blend 180g suculento, fatias crocantes de bacon defumado, cheddar cremoso e cebola caramelizada no pão brioche.</p>
+          </div>
+          <div class="item-foot">
+            <span class="price">R$ 34,00</span>
+            <button class="mini-btn" onclick="atalhoBurger('Quero pedir 1 Brava Bacon Supreme')">Pedir com IA ✦</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-img-wrap">
+          <span class="item-badge">Duplo Smash</span>
+          <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80" alt="Brava Duplo Smash" loading="lazy">
+        </div>
+        <div class="item-body">
+          <div>
+            <h3>Brava Duplo Smash</h3>
+            <p>Dois smash burgers 100g prensados na chapa com crosta perfeita, cheddar duplo, picles artesanais e molho Brava.</p>
+          </div>
+          <div class="item-foot">
+            <span class="price">R$ 32,00</span>
+            <button class="mini-btn" onclick="atalhoBurger('Quero pedir 1 Brava Duplo Smash')">Pedir com IA ✦</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-img-wrap">
+          <span class="item-badge">Acompanhamento</span>
+          <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80" alt="Batata Rústica com Cheddar e Bacon" loading="lazy">
+        </div>
+        <div class="item-body">
+          <div>
+            <h3>Batata Rústica Cheddar & Bacon</h3>
+            <p>Porção generosa de batatas crocantes temperadas com páprica, cobertas com cheddar cremoso e cubos de bacon.</p>
+          </div>
+          <div class="item-foot">
+            <span class="price">R$ 22,00</span>
+            <button class="mini-btn" onclick="atalhoBurger('Quero adicionar 1 Batata Rústica com Cheddar e Bacon')">Pedir com IA ✦</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-img-wrap">
+          <span class="item-badge">Sobremesa</span>
+          <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80" alt="Milkshake Oreo ou Ovomaltine" loading="lazy">
+        </div>
+        <div class="item-body">
+          <div>
+            <h3>Milkshake Oreo ou Ovomaltine</h3>
+            <p>Copo 400ml ultra cremoso batido com sorvete artesanal, calda de chocolate e cobertura crocante.</p>
+          </div>
+          <div class="item-foot">
+            <span class="price">R$ 19,00</span>
+            <button class="mini-btn" onclick="atalhoBurger('Quero pedir 1 Milkshake')">Pedir com IA ✦</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-img-wrap">
+          <span class="item-badge">Bebida Gelada</span>
+          <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80" alt="Refrigerante Lata 350ml" loading="lazy">
+        </div>
+        <div class="item-body">
+          <div>
+            <h3>Refrigerante Lata 350ml</h3>
+            <p>Coca-Cola Original, Coca-Cola Zero ou Guaraná Antarctica trincando de gelado para acompanhar seu burger.</p>
+          </div>
+          <div class="item-foot">
+            <span class="price">R$ 7,00</span>
+            <button class="mini-btn" onclick="atalhoBurger('Quero pedir 1 Refrigerante Lata')">Pedir com IA ✦</button>
+          </div>
         </div>
       </article>
     </div>
@@ -157,7 +239,6 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
 </footer>
 
 <script>
-// USA O WORKER VEZQORA-IA QUE JÁ ESTÁ ONLINE NO CLOUDFLARE
 const WORKER_URL='https://vezqora-ia.vezqoraai.workers.dev';
 const CONTEXTO_BURGER=`[MODO DEMONSTRAÇÃO BRAVA BURGER — IGNORE QUALQUER OUTRA EMPRESA E ATENDA EXCLUSIVAMENTE COMO ATENDENTE DA HAMBURGUERIA BRAVA BURGER]
 Cardápio e preços:
@@ -200,6 +281,7 @@ function addMsg(text,role,order=null){
 
 function atalhoBurger(txt){
   inp.value=txt;
+  document.getElementById('chatBox').scrollIntoView({behavior:'smooth'});
   enviarBurger();
 }
 
